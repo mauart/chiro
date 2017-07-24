@@ -1,0 +1,56 @@
+<h4>Diagnosticos del paciente</h4>
+<div>
+  <!-- accordion with arrows -->
+  <accordion [showArrows]="true">
+    <accordion-group *ngFor="let diagnostico of diagnosticos; let i=index">
+        <accordion-heading>
+            Examen No. {{i+1}}
+        </accordion-heading>
+        <div class="row">
+          <h5>Dx.Presuntivo</h5>
+          <div class="col-xs-12">
+          <p>
+            {{diagnostico.presuntivo}}
+          </p>
+          </div>
+        </div>
+        <div class="row">
+          <h5>Dx.Definitivo</h5>
+          <div class="col-xs-12">
+            <p>
+              {{diagnostico.definitivo}}
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <h5>Tx.Y plan de estudio(Bio-S.P)</h5>
+          <div class="col-xs-12">
+            {{diagnostico.plan_estudio}}
+          </div>
+        </div>
+        <div class="row">
+          <hr />
+          <div class="col-xs-12" style="width:150px;height:150px"  *ngIf="avance1Url[i]">
+            <img style="cursor:pointer" class="img-responsive img-rounded" [src]='avance1Url[i]'/>
+          </div>
+          <div class="col-xs-12" style="width:150px;height:150px" *ngIf="avance2Url[i]">
+            <img style="cursor:pointer" class="img-responsive img-rounded"  [src]='avance2Url[i]'/>
+          </div>
+          <div class="col-xs-12" style="width:150px;height:150px" *ngIf="cartaUrl[i]">
+            <img style="cursor:pointer" class="img-responsive img-rounded"  [src]='cartaUrl[i]'/>
+          </div>
+        </div>
+    </accordion-group>
+
+    <!-- <accordion-group heading="About me">
+      Its all about me.
+    </accordion-group>
+    <accordion-group heading="Contacts">
+      This is content of the contacts
+    </accordion-group>
+    <accordion-group heading="Map">
+      Content of the Map
+    </accordion-group> -->
+
+  </accordion>
+</div>

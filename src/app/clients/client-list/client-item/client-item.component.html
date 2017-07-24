@@ -1,0 +1,19 @@
+<a
+    style="cursor:pointer;"
+    [routerLink]="[index]" routerLinkActive="active"
+    class="list-group-item clearfix"
+    (click)="onSelected()"
+>
+  <h4 class="list-group-item-heading"> <md-icon>face</md-icon> {{client.name}} | {{client.profesion}}</h4>
+  <br />
+  <p class="list-group-item-text">
+    <span>Telefono: {{client.telefono}} </span>
+    <span class="tab">Edad:{{client.edad}}  </span>
+    <span class="tab">Peso: {{client.peso}}</span>
+  </p>
+
+  <p class="list-group-item-text">
+    <span>Estatura: {{client.estatura}} </span>
+  </p>
+
+</a>

@@ -1,0 +1,158 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div style="width:550px; height:600px;">
+    <h1 md-dialog-title>Realizar examen</h1>
+    <div md-dialog-content>
+      <div class="col-xs-12">
+        <md-input-container class="col-xs-12">
+          <textarea
+                      mdInput
+                      placeholder="Dx.Presuntivo"
+                      rows="2"
+                      name="presuntivo"
+                      ngModel>
+          </textarea>
+        </md-input-container>
+        <br />
+      </div>
+      <div class="col-xs-12">
+        <br />
+        <md-input-container class="col-xs-12">
+          <textarea
+                      mdInput
+                      placeholder="Dx.Definitivo"
+                      rows="2"
+                      name="definitivo"
+                      ngModel>
+          </textarea>
+        </md-input-container>
+        <br />
+      </div>
+      <div class="col-xs-12">
+        <br />
+        <md-input-container class="col-xs-12">
+          <textarea
+                      mdInput
+                      placeholder="Tx. Y Plan de estudios(Bio -S.P)"
+                      rows="2"
+                      name="plan_de_estudio"
+                      ngModel>
+          </textarea>
+        </md-input-container>
+        <br />
+      </div>
+      <div class="col-xs-12">
+        <br />
+        <div class="col-xs-6">
+          <div class="input-group">
+            <label class="input-group-btn">
+              <span class="btn btn-primary">
+                Avance 1
+                <input
+                        type="file"
+                        name="avance1"
+                        accept="image/*"
+                        (change)="onImageAvance1($event)"
+                        style="display: none;"/>
+              </span>
+            </label>
+          <input type="text" class="form-control" name="avance1Name" [(ngModel)]="avance1Name" readonly>
+          </div>
+        </div>
+
+        <div class="col-xs-6">
+          <div class="input-group">
+            <label class="input-group-btn">
+              <span class="btn btn-primary">
+                Avance 2
+                <input
+                        type="file"
+                        name="avance1"
+                        accept="image/*"
+                        (change)="onImageAvance2($event)"
+                        style="display: none;"/>
+              </span>
+            </label>
+          <input type="text" class="form-control" name="avance2Name" [(ngModel)]="avance2Name" readonly>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+
+      </div>
+      <div class="col-xs-12">
+        <br/>
+        <div class="col-xs-6">
+          <div class="input-group">
+            <label class="input-group-btn">
+              <span class="btn btn-primary">
+                Estudios
+                <input
+                        type="file"
+                        name="carta"
+                        accept="image/*"
+                        (change)="onImageEstudio($event)"
+                        style="display: none;"
+                        multiple/>
+              </span>
+            </label>
+          <input type="text" class="form-control" name="estudiosName" [(ngModel)]="estudiosName" readonly>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="input-group">
+            <label class="input-group-btn">
+              <span class="btn btn-primary">
+                Carta
+                <input
+                        type="file"
+                        name="carta"
+                        accept="image/*"
+                        (change)="onImageCarta($event)"
+                        style="display: none;"/>
+              </span>
+            </label>
+          <input type="text" class="form-control" name="cartaName" [(ngModel)]="cartaName" readonly>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12">
+        <img width="100px" height="100px"
+           [src]="avance1"
+          />
+          <img width="100px" height="100px"
+             [src]="avance2"
+            />
+            <img width="100px" height="100px"
+               [src]="carta"
+              />
+              <img width="100px" height="100px" *ngFor="let estudio of estudios"
+                 [src]="estudio"
+                />
+      </div> -->
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-xs-12">
+            <hr />
+            <div class="col-xs-3"></div>
+            <div class="col-xs-9">
+              <button
+                      type="submit"
+                      md-button
+                      color="primary">
+                      Continuar
+              </button>
+              <button
+                      type="button"
+                      md-button
+                      md-dialog-close
+                      color="primary">
+                      Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

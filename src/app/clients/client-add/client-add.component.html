@@ -1,0 +1,898 @@
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <!-- <md-tab-group [selectedIndex]="1"> -->
+  <md-tab-group [selectedIndex]="nextTabIndex">
+    <md-tab label="Datos Personales" style="margin-bottom=50px;">
+      <br />
+      <div class="col-xs-12">
+        <md-input-container class="col-xs-5" style="margin-top=30px">
+          <input
+                mdInput
+                placeholder="Nombre"
+                name="name"
+                ngModel
+                required>
+        </md-input-container>
+        <md-radio-group
+                          class="col-xs-3 example-radio-group"
+                          name="sex"
+                          ngModel
+                          required>
+           <md-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
+             {{gender}}
+           </md-radio-button>
+        </md-radio-group>
+      </div>
+
+      <div class="col-xs-12">
+        <md-input-container class="col-xs-5" style="margin-top=30px" required>
+          <input
+                  type="number"
+                  mdInput
+                  placeholder="Edad"
+                  name="age"
+                  ngModel
+                  required>
+        </md-input-container>
+        <md-radio-group
+                        class="col-xs-6 example-radio-group"
+                        name="estate"
+                        ngModel
+                        required>
+           <md-radio-button class="example-radio-button" *ngFor="let state of states" [value]="state">
+             {{state}}
+           </md-radio-button>
+        </md-radio-group>
+      </div>
+      <div class="col-xs-12">
+        <md-input-container class="col-xs-5" style="margin-top=30px" required>
+          <input
+                  mdInput
+                  placeholder="Direccion"
+                  name="address"
+                  ngModel
+                  >
+        </md-input-container>
+      </div>
+      <div class="col-xs-12" style="margin-top=3%">
+        <md-input-container class="col-xs-5" style="margin-top=30px">
+          <input
+                  type="tel"
+                  mdInput
+                  placeholder="Telefono"
+                  name="phone"
+                  ngModel
+                  required>
+        </md-input-container>
+        <md-input-container class="col-xs-5" style="margin-top=30px">
+          <input
+                  type="tel"
+                  mdInput
+                  placeholder="Celular"
+                  name="cellphone"
+                  ngModel>
+        </md-input-container>
+      </div>
+
+      <div class="col-xs-12" style="margin-top=3%">
+        <md-input-container class="col-xs-5">
+          <input
+                  type="text"
+                  mdInput
+                  placeholder="Giro"
+                  name="spin"
+                  ngModel>
+        </md-input-container>
+        <md-input-container class="col-xs-5" style="margin-top=30px">
+          <input
+                  type="text"
+                  mdInput
+                  placeholder="Profesion"
+                  required
+                  name="proffesion"
+                  ngModel>
+        </md-input-container>
+      </div>
+
+      <div class="col-xs-12" style="margin-top=3%">
+        <md-input-container class="col-xs-5">
+          <input
+                  type="email"
+                  mdInput
+                  placeholder="Email"
+                  required
+                  name="email"
+                  ngModel>
+        </md-input-container>
+      </div>
+
+
+
+      <div class="col-xs-12" style="margin-top=3%">
+        <md-input-container class="col-xs-5">
+          <input
+                  type="number"
+                  mdInput
+                  placeholder="Estatura"
+                  required
+                  name="height"
+                  ngModel>
+        </md-input-container>
+        <md-input-container class="col-xs-5" style="margin-top=30px">
+          <input
+                  type="number"
+                  mdInput
+                  placeholder="Peso"
+                  required
+                  name="weight"
+                  ngModel>
+        </md-input-container>
+      </div>
+
+      <div class="col-xs-12" style="margin-top=3%">
+        <md-input-container class="col-xs-5">
+          <input
+                  type="text"
+                  mdInput
+                  placeholder="Presion Arterial"
+                  name="pressure"
+                  ngModel>
+        </md-input-container>
+        <md-input-container class="col-xs-5" style="margin-top=30px">
+          <input
+                  type="text"
+                  mdInput
+                  placeholder="CALZ"
+                  name="calz"
+                  ngModel>
+        </md-input-container>
+      </div>
+
+      <div class="col-xs-12" style="margin-top=3%">
+        <md-input-container class="col-xs-5">
+          <input
+                  type="text"
+                  mdInput
+                  placeholder="FC"
+                  name="fc"
+                  ngModel>
+        </md-input-container>
+        <md-input-container class="col-xs-5" style="margin-top=30px">
+          <input
+                  type="text"
+                  mdInput
+                  placeholder="FR"
+                  name="fr"
+                  ngModel>
+        </md-input-container>
+      </div>
+      <div class="col-xs-2">
+        <button
+                  class="col-xs-12"
+                  style="margin-left:10%;"
+                  md-raised-button
+                  type="button"
+                  (click)="nextMenu(1)"
+                  color="accent"
+                  [disabled]="!f.valid">
+                  Continuar
+        </button>
+      </div>
+
+    </md-tab>
+    <md-tab
+              label="Exp.Fisica"
+              *ngIf="menuStatus.exp_fisica">
+      <br />
+      <div class="col-xs-12">
+        <div class="col-xs-3">
+          <md-slide-toggle #onico>Onicopatias</md-slide-toggle>
+        </div>
+        <div class="col-xs-6">
+          <section class="col-xs-12" *ngFor="let onicopatia of onicopatias">
+            <md-checkbox
+                          class="example-margin"
+                          ngModel [name]="onicopatia | lowercase"
+                          [disabled]="!onico.checked"
+                          [value]="onicopatia|lowercase" >
+                          {{onicopatia}}
+            </md-checkbox>
+          </section>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <hr />
+        <div class="col-xs-3">
+          <md-slide-toggle #pielckd>Piel</md-slide-toggle>
+        </div>
+        <div class="col-xs-6">
+          <section class="col-xs-12" *ngFor="let skin of piel">
+            <md-checkbox
+                          class="example-margin"
+                          [disabled]="!pielckd.checked"
+                          ngModel [name]="skin | lowercase">
+                          {{skin}}
+            </md-checkbox>
+          </section>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <hr />
+        <div class="col-xs-3">
+          <md-slide-toggle #otrosfsckd [required]="otrosfsckd.checked">Otros</md-slide-toggle>
+        </div>
+        <div class="col-xs-7">
+          <md-input-container class="col-xs-9">
+            <textarea
+                        mdInput
+                        placeholder="Otras exploraciones fisicas"
+                        rows="4"
+                        name="fisica_otros"
+                        ngModel
+                        [disabled]="!otrosfsckd.checked"></textarea>
+          </md-input-container>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <button
+                  class="col-xs-12"
+                  style="margin-left:10%;"
+                  md-raised-button
+                  type="button"
+                  (click)="nextMenu(2)"
+                  color="accent"
+                  [disabled]="!f.valid">
+                  Continuar
+        </button>
+      </div>
+
+    </md-tab>
+
+    <md-tab label="Exp.Vascular"  *ngIf="menuStatus.exp_vascular">
+      <br />
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+              <md-slide-toggle #expVasc>Exploracion vascular</md-slide-toggle>
+            </div>
+            <div class="col-xs-6">
+              <section class="col-xs-12" *ngFor="let vascular of vasculares">
+                <md-checkbox [disabled]="!expVasc.checked" class="example-margin" ngModel [name]="vascular.ref | lowercase">{{vascular.name}}</md-checkbox>
+              </section>
+            </div>
+        </div>
+        <div class="col-xs-12">
+          <hr />
+          <div class="col-xs-3">
+            <md-slide-toggle #expVascOtros>Otros</md-slide-toggle>
+          </div>
+          <div class="col-xs-7">
+            <md-input-container class="col-xs-9">
+              <textarea
+                          [disabled]="!expVascOtros.checked"
+                          mdInput
+                          placeholder="Otras exploraciones vasculares"
+                          rows="4"
+                          name="vascular_otros"
+                          ngModel>
+              </textarea>
+            </md-input-container>
+          </div>
+        </div>
+        <div class="col-xs-2">
+          <button
+                    class="col-xs-12"
+                    style="margin-left:10%;"
+                    md-raised-button
+                    type="button"
+                    (click)="nextMenu(3)"
+                    color="accent"
+                    [disabled]="!f.valid">
+                    Continuar
+          </button>
+        </div>
+
+    </md-tab>
+    <md-tab label="Ant.HeredoFamiliares" *ngIf="menuStatus.ant_heredo">
+      <br />
+      <div class="col-xs-12">
+        <div class="col-xs-3">
+          <md-slide-toggle #antHeredo>Antecedentes</md-slide-toggle>
+
+        </div>
+        <div class="col-xs-9">
+          <section class="col-xs-12" *ngFor="let heredofam of heredofams">
+            <md-checkbox
+                          [disabled]="!antHeredo.checked"
+                          class="example-margin"
+                          ngModel
+                          [name]="heredofam.ref | lowercase">
+                          {{heredofam.name}}
+            </md-checkbox>
+          </section>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+      <div class="col-xs-2">
+        <button
+                  class="col-xs-12"
+                  style="margin-left:10%;"
+                  md-raised-button
+                  type="button"
+                  (click)="nextMenu(4)"
+                  color="accent"
+                  [disabled]="!f.valid">
+                  Continuar
+        </button>
+      </div>
+
+    </md-tab>
+    <md-tab label="Ant.No patalogicos" *ngIf="menuStatus.ant_n_pato">
+      <br/>
+      <div class="col-xs-12">
+        <div class="col-xs-4">
+            <p>Habita en medio:</p>
+        </div>
+        <div class="col-xs-3">
+          <md-radio-group
+                          class="col-xs-12 example-radio-group"
+                          name="habitat"
+                          ngModel
+                          required>
+             <md-radio-button
+                                class="example-radio-button"
+                                *ngFor="let habitat of habitats"
+                                [value]="habitat">
+               {{habitat}}
+             </md-radio-button>
+          </md-radio-group>
+        </div>
+      </div>
+      <div class="col-xs-12">
+            <hr />
+        <div class="col-xs-4">
+          <p>Alimentacion</p>
+        </div>
+        <div class="col-xs-4">
+          <md-radio-group
+                          class="col-xs-3 example-radio-group"
+                          name="alimentacion"
+                          ngModel
+                          required>
+             <md-radio-button class="example-radio-button" *ngFor="let aliem of alimentacion" [value]="aliem">
+               {{aliem}}
+             </md-radio-button>
+          </md-radio-group>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <hr />
+        <div class="col-xs-4">
+          <p>Habitos higienicos</p>
+        </div>
+        <div class="col-xs-4">
+          <md-radio-group
+                          class="col-xs-3 example-radio-group"
+                          name="habitos"
+                          ngModel
+                          required>
+             <md-radio-button class="example-radio-button" *ngFor="let habito of habitos" [value]="habito">
+               {{habito}}
+          </md-radio-button>
+        </md-radio-group>
+        <section class="col-xs-12" *ngFor="let habito2 of habitos2">
+          <md-checkbox class="example-margin" ngModel [name]="habito2.ref | lowercase" >{{habito2.name}}</md-checkbox>
+        </section>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <hr />
+        <div class="col-xs-3">
+          <md-slide-toggle #antNoPat>Otros</md-slide-toggle>
+        </div>
+        <div class="col-xs-7">
+          <md-input-container class="col-xs-9">
+            <textarea [disabled]="!antNoPat.checked" mdInput placeholder="Otros antecedentes no patalogicos" rows="4" name="no_pat_otros" ngModel></textarea>
+          </md-input-container>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <button
+                  md-raised-button
+                  class="col-xs-12"
+                  style="margin-left:10%;"
+                  type="button"
+                  (click)="nextMenu(5)"
+                  color="accent"
+                  [disabled]="!f.valid">
+                  Continuar
+        </button>
+      </div>
+
+    </md-tab>
+    <md-tab label="Ant.Patologicos" *ngIf="menuStatus.ant_pato">
+      <br /><br />
+      <div class="col-xs-12">
+          <div class="col-xs-4">
+              <p>
+                ¿Refieres enfermedades propias de la infancia?
+              </p>
+          </div>
+          <div class="col-xs-8">
+            <md-radio-group
+                            class="col-xs-3 example-radio-group"
+                            name="enf"
+                            ngModel
+                            required>
+               <md-radio-button class="example-radio-button" *ngFor="let enf of q_enf_infant" [value]="enf">
+                 {{enf}}
+            </md-radio-button>
+          </md-radio-group>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <hr />
+        <div class="col-xs-4">
+        <p>Enfermedades</p>
+        </div>
+        <div class="col-xs-5">
+          <section  class="col-xs-6" *ngFor="let enf of enf_infant">
+            <md-checkbox class="example-margin" ngModel [name]="enf.ref | lowercase" >{{enf.name}}</md-checkbox>
+          </section>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <hr />
+        <div class="col-xs-3">
+          <md-slide-toggle #antPatoEsp>Especificar</md-slide-toggle>
+        </div>
+        <div class="col-xs-7">
+          <md-input-container class="col-xs-9">
+            <textarea [disabled]="!antPatoEsp.checked" mdInput placeholder="Especificar antecedente patologico" rows="4" name="ant_pato" ngModel></textarea>
+          </md-input-container>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <hr />
+        <div class="col-xs-3">
+          <md-slide-toggle #antPatoMot>Motivo de la consulta</md-slide-toggle>
+        </div>
+        <div class="col-xs-7">
+          <md-input-container class="col-xs-9">
+            <textarea [disabled]="!antPatoMot.checked" mdInput placeholder="Especificar motivo de la consulta" rows="4" name="motivo_consulta" ngModel></textarea>
+          </md-input-container>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <button
+                  md-raised-button
+                  class="col-xs-12"
+                  style="margin-left:10%;"
+                  type="button"
+                  (click)="nextMenu(6)"
+                  color="accent"
+                  [disabled]="!f.valid">
+                  Continuar
+        </button>
+      </div>
+
+    </md-tab>
+    <md-tab label="Exp.Neurologica" *ngIf="menuStatus.ant_neuro">
+      <br />
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-xs-4">
+            <p>
+              Pie Derecho
+            </p>
+          </div>
+          <div class="col-xs-4">
+            <md-select class="col-xs-12" style="margin-bottom=30px" placeholder="Percepcion Dolorosa" name="pd_dolorosa" ngModel>
+              <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+                {{ percepcion.name }}
+              </md-option>
+            </md-select>
+            <div class="col-xs-3">
+              <br/>
+            </div>
+            <md-select class="col-xs-12" placeholder="Percepcion tactil" name="pd_tactil" ngModel>
+              <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+                {{ percepcion.name }}
+              </md-option>
+            </md-select>
+            <div class="col-xs-3">
+              <br/>
+            </div>
+            <md-select class="col-xs-12" placeholder="Percepcion termica" name="pd_termica" ngModel>
+              <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+                {{ percepcion.name }}
+              </md-option>
+            </md-select>
+            <div class="col-xs-3">
+              <br/>
+            </div>
+            <md-select class="col-xs-12" placeholder="Percepcion vibratoria" name="pd_vibratoria" ngModel>
+              <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+                {{ percepcion.name }}
+              </md-option>
+            </md-select>
+
+            <div class="col-xs-12">
+            <hr />
+            </div>
+            <md-select class="col-xs-12" placeholder="Reflejo rotuliano" name="rd_rotuliano" ngModel>
+              <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+                {{ percepcion.name }}
+              </md-option>
+            </md-select>
+
+            <div class="col-xs-12">
+              <br/>
+            </div>
+            <md-select class="col-xs-12" placeholder="Reflejo aquiliano" name="rd_aquiliano" ngModel>
+              <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+                {{ percepcion.name }}
+              </md-option>
+            </md-select>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col-xs-12">
+        <hr />
+        <div class="col-xs-4">
+          <p>
+            Pie Izquierdo
+          </p>
+        </div>
+        <div class="col-xs-4">
+          <md-select class="col-xs-12" style="margin-bottom=30px" placeholder="Percepcion Dolorosa" name="pi_dolorosa" ngModel>
+            <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+              {{ percepcion.name }}
+            </md-option>
+          </md-select>
+          <div class="col-xs-3">
+            <br/>
+          </div>
+          <md-select class="col-xs-12" placeholder="Percepcion tactil" name="pi_tactil" ngModel>
+            <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+              {{ percepcion.name }}
+            </md-option>
+          </md-select>
+          <div class="col-xs-3">
+            <br/>
+          </div>
+          <md-select class="col-xs-12" placeholder="Percepcion termica" name="pi_termica" ngModel>
+            <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+              {{ percepcion.name }}
+            </md-option>
+          </md-select>
+          <div class="col-xs-3">
+            <br/>
+          </div>
+          <md-select class="col-xs-12" placeholder="Percepcion vibratoria" name="pi_vibratoria" ngModel>
+            <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+              {{ percepcion.name }}
+            </md-option>
+          </md-select>
+
+          <div class="col-xs-12">
+          <hr />
+          </div>
+          <md-select class="col-xs-12" placeholder="Reflejo rotuliano" name="ri_rotuliano" ngModel>
+            <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+              {{ percepcion.name }}
+            </md-option>
+          </md-select>
+
+          <div class="col-xs-12">
+            <br/>
+          </div>
+          <md-select class="col-xs-12" placeholder="Reflejo aquiliano" name="ri_aquiliano" ngModel>
+            <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
+              {{ percepcion.name }}
+            </md-option>
+          </md-select>
+
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <button
+                  md-raised-button
+                  class="col-xs-12"
+                  style="margin-left:10%;"
+                  type="button"
+                  (click)="nextMenu(7)"
+                  color="accent"
+                  [disabled]="!f.valid">
+                  Continuar
+        </button>
+      </div>
+
+    </md-tab>
+    <md-tab label="Ex.Biomecanico" *ngIf="menuStatus.exm_bio">
+      <br />
+      <div class="col-xs-12">
+        <div class="col-xs-6">
+            <div class="col-xs-12">
+              <p>
+                Parte Derecha
+              </p>
+              <hr />
+            </div>
+            <div class="col-xs-12">
+              <div class="col-xs-12">
+                <section class="example-section">
+                 <md-checkbox class="example-margin" name="hombroniv" [(ngModel)]="hombroniv">Hombro {{hombroniv?'Nivelado':'Desnivelado'}}</md-checkbox>
+                </section>
+              </div>
+              <div class="col-xs-12">
+                <section class="example-section">
+                 <md-checkbox class="example-margin" name="caderaniv" [(ngModel)]="caderaniv">Cadera {{caderaniv?'Nivelada':'Desnivelada'}}</md-checkbox>
+                </section>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="col-xs-12">
+                <section class="example-section">
+                 <md-checkbox
+                                class="example-margin"
+                                name="rotinterna"
+                                [(ngModel)]="rotinterna">
+                                Rotacion int. {{rotinterna?'Normal':'Limitada'}}
+                 </md-checkbox>
+                </section>
+              </div>
+              <div class="col-xs-12">
+                <section class="example-section">
+                 <md-checkbox
+                                class="example-margin"
+                                name="rotexterna"
+                                [(ngModel)]="rotexterna">
+                                Rotacion ext. {{rotexterna?'Normal':'Limitada'}}
+                 </md-checkbox>
+                </section>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <hr />
+            </div>
+            <div class="col-xs-12">
+              <div class="col-xs-12">
+                <section class="example-section">
+                 <md-checkbox
+                                class="example-margin"
+                                name="flexion"
+                                [(ngModel)]="flexion">
+                                Flexion {{flexion?'Completa':'Incompleta'}}
+                 </md-checkbox>
+                </section>
+              </div>
+              <div class="col-xs-6">
+                <section class="example-section">
+                 <md-checkbox
+                                class="example-margin"
+                                name="extension"
+                                [(ngModel)]="extension">
+                                Extension {{extension?'Completa':'Incompleta'}}
+                 </md-checkbox>
+                </section>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <md-select class="col-xs-12" style="margin-top:5%" placeholder="Tipo" name="tipoDer" ngModel>
+                <md-option *ngFor="let tipo of tipos" [value]="tipo.ref">
+                  {{ tipo.name }}
+                </md-option>
+              </md-select>
+            </div>
+            <div class="col-xs-12">
+              <br /> <br />
+              <button
+                      md-raised-button
+                      color="accent"
+                      type="button"
+                      (click)="openDialogDer()">
+                      Definir pie
+              </button>
+            </div>
+            <div class="col-xs-12">
+              <br />
+              <md-input-container class="col-xs-12" style="margin-top=30px">
+                <input
+                      mdInput
+                      placeholder="Otra patologia"
+                      name="derotrapat"
+                      ngModel
+                      >
+              </md-input-container>
+            </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="col-xs-12">
+            <p>
+              Parte Izquierda
+            </p>
+            <hr />
+          </div>
+          <div class="col-xs-12">
+            <div class="col-xs-12">
+              <section class="example-section">
+               <md-checkbox
+                              class="example-margin"
+                              name="hombroniv2"
+                              [(ngModel)]="hombroniv2">
+                              Hombro {{hombroniv2?'Nivelado':'Desnivelado'}}
+               </md-checkbox>
+              </section>
+            </div>
+            <div class="col-xs-12">
+              <section class="example-section">
+               <md-checkbox
+                              class="example-margin"
+                              name="caderaniv2"
+                              [(ngModel)]="caderaniv2">
+                              Cadera {{caderaniv2?'Nivelada':'Desnivelada'}}
+                </md-checkbox>
+              </section>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="col-xs-12">
+              <section class="example-section">
+               <md-checkbox
+                              class="example-margin"
+                              name="rotinterna2"
+                              [(ngModel)]="rotinterna2">
+                              Rotacion int. {{rotinterna2?'Normal':'Limitada'}}
+                </md-checkbox>
+              </section>
+            </div>
+            <div class="col-xs-12">
+              <section class="example-section">
+               <md-checkbox
+                              class="example-margin"
+                              name="rotexterna2"
+                              [(ngModel)]="rotexterna2">
+                              Rotacion ext. {{rotexterna2?'Normal':'Limitada'}}
+               </md-checkbox>
+              </section>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <hr />
+          </div>
+          <div class="col-xs-12">
+            <div class="col-xs-12">
+              <section class="example-section">
+               <md-checkbox
+                              class="example-margin"
+                              name="flexion2"
+                              [(ngModel)]="flexion2">
+                  Flexion {{flexion2?'Completa':'Incompleta'}}
+                </md-checkbox>
+              </section>
+            </div>
+            <div class="col-xs-6">
+              <section class="example-section">
+               <md-checkbox
+                              class="example-margin"
+                              name="extension2"
+                              [(ngModel)]="extension2">
+                              Extension {{extension2?'Completa':'Incompleta'}}
+                </md-checkbox>
+              </section>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <md-select
+                        class="col-xs-12"
+                        style="margin-top:5%"
+                        placeholder="Tipo"
+                        name="tipoIzq" ngModel>
+              <md-option
+                          *ngFor="let tipo of tipos"
+                          [value]="tipo.ref">
+                {{ tipo.name }}
+              </md-option>
+            </md-select>
+          </div>
+          <div class="col-xs-12">
+            <br /> <br />
+            <button
+                      md-raised-button
+                      color="accent"
+                      type="button"
+                      (click)="openDialogIzq()" >
+                      Definir pie
+            </button>
+          </div>
+          <div class="col-xs-12">
+            <br />
+            <md-input-container class="col-xs-12" style="margin-top=30px">
+              <input
+                    mdInput
+                    placeholder="Otra patologia"
+                    name="izqotrapat"
+                    ngModel
+                    >
+            </md-input-container>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="col-xs-12">
+        <br />
+        <div class="col-xs-6">
+          <md-input-container class="col-xs-12">
+            <textarea
+                        mdInput
+                        placeholder="Valoracion en podoscopio"
+                        rows="3"
+                        name="valoracion"
+                        ngModel>
+            </textarea>
+          </md-input-container>
+        </div>
+        <div class="col-xs-6">
+          <div class="col-xs-12">
+            <md-select
+                        class="col-xs-12"
+                        style="margin-bottom=100px"
+                        placeholder="Tipo de impresion"
+                        name="impresion"
+                        ngModel>
+              <md-option
+                          *ngFor="let impresion of impresiones"
+                          [value]="impresion.ref">
+                          {{ impresion.name }}
+              </md-option>
+            </md-select>
+            <br />
+          </div>
+          <br />
+          <div class="col-xs-12">
+            <br />
+            <md-select
+                        class="col-xs-12"
+                        placeholder="Tipo ortesis"
+                        name="ortesis"
+                        ngModel>
+              <md-option
+                          *ngFor="let tipo of tipoOrtesis"
+                          [value]="tipo.ref">
+                {{ tipo.name }}
+              </md-option>
+            </md-select>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="col-xs-7">
+
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <button
+                  md-raised-button
+                  class="col-xs-12"
+                  style="margin-left:10%;"
+                  type="submit"
+                  color="primary"
+                  [disabled]="!f.valid">
+                  Enviar
+        </button>
+      </div>
+    </md-tab>
+  </md-tab-group>
+</form>

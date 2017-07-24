@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">{{client.name}} | {{client.estate}}</h4>
+    <p class="card-text">Paciente con email: {{client.email}}  y edad de  {{client.age}} cuenta con los siguientes datos personales:</p>
+    <p>Sexo: {{client.sex}}</p>
+    <p>Telefono:{{client.phone}} | Celular:{{client.cellphone}} </p>
+    <p>Direccion: {{client.address}}</p>
+    <p>El paciente trabaja en el area de {{client.spin}} como {{client.proffesion}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Estatura: {{client.height}} mts.</li>
+    <li class="list-group-item"> Peso: {{client.weight}} Kg </li>
+    <li class="list-group-item"> Presion: {{client.pressure}} </li>
+
+    <li class="list-group-item">CALZ: {{client.calz}}, FC: {{client.fc}} y FR: {{client.fr}} </li>
+
+  </ul>
+  <div class="card-block">
+    <button md-raised-button color="primary" (click)="openDialogExamen()">Realizar examen</button>
+    <button md-raised-button color="primary" (click)="onSearchForDiags()">Diagnosticos</button>
+  </div>
+</div>

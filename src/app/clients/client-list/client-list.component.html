@@ -1,0 +1,33 @@
+<button md-icon-button [mdMenuTriggerFor]="menu">
+  Actions
+</button>
+<md-menu #menu="mdMenu">
+  <button md-menu-item (click)="onAddClient()">
+    <md-icon >add_circle</md-icon>
+    <span>New Client</span>
+  </button>
+  <button md-menu-item [disabled]="!clientsService.isEditable()">
+    <md-icon>mode_edit</md-icon>
+    <span>Edit Client</span>
+  </button>
+  <button md-menu-item [disabled]="!clientsService.isEditable()" (click)="onDeleteClient()">
+    <md-icon>remove_circle</md-icon>
+    <span>Remove Client</span>
+  </button>
+  <button md-menu-item [disabled]="!clientsService.isEditable()">
+    <md-icon>print</md-icon>
+    <span>Print Client</span>
+  </button>
+</md-menu>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="list-group" >
+    <app-client-item *ngFor="let client of clients;let i=index"
+                    [client]="client"
+                    [index]="i"
+                    (itemSelected)="onSelected($event)">
+    </app-client-item>
+  </div>
+  </div>
+</div>

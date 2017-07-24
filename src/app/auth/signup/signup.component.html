@@ -1,0 +1,59 @@
+<h2>Signup new user</h2>
+<hr />
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="row">
+    <div class="col-xs-12">
+      <md-input-container class="col-xs-4">
+        <input
+                type="email"
+                mdInput
+                placeholder="Email"
+                name="email"
+                ngModel
+
+                required>
+      </md-input-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <md-input-container class="col-xs-4">
+        <input
+                mdInput
+                placeholder="Password"
+                name="password"
+                ngModel
+                #pass
+                required
+                type="password">
+      </md-input-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <md-input-container class="col-xs-4">
+        <input
+                mdInput
+                placeholder="Confirm Password"
+                required
+                name="confirmPassword"
+                ngModel
+                #pass2
+                type="password">
+      </md-input-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <button
+                md-raised-button
+                class="col-xs-12"
+                type="submit"
+
+                color="primary"
+                [disabled]="!f.valid || pass.value!=pass2.value">
+                Signup
+      </button>
+    </div>
+  </div>
+</form>
