@@ -8,7 +8,7 @@ import {Subject} from 'rxjs/Subject';
 import * as firebase from 'firebase';
 
 import {Headers,Http,Response} from '@angular/http';
-
+import 'rxjs';
 @Injectable()
 export class ClientsService implements OnInit{
 
