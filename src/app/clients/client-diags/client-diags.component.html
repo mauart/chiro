@@ -2,7 +2,7 @@
 <div>
   <!-- accordion with arrows -->
   <accordion [showArrows]="true">
-    <accordion-group *ngFor="let diagnostico of diagnosticos; let i=index">
+    <accordion-group *ngFor="let diag of diagnosticos; let i=index">
         <accordion-heading>
             Examen No. {{i+1}}
         </accordion-heading>
@@ -10,7 +10,7 @@
           <h5>Dx.Presuntivo</h5>
           <div class="col-xs-12">
           <p>
-            {{diagnostico.presuntivo}}
+            {{diag.presuntivo}}
           </p>
           </div>
         </div>
@@ -18,26 +18,26 @@
           <h5>Dx.Definitivo</h5>
           <div class="col-xs-12">
             <p>
-              {{diagnostico.definitivo}}
+              {{diag.definitivo}}
             </p>
           </div>
         </div>
         <div class="row">
           <h5>Tx.Y plan de estudio(Bio-S.P)</h5>
           <div class="col-xs-12">
-            {{diagnostico.plan_estudio}}
+            {{diag.plan_estudio}}
           </div>
         </div>
         <div class="row">
           <hr />
-          <div class="col-xs-12" style="width:150px;height:150px"  *ngIf="avance1Url[i]">
-            <img style="cursor:pointer" class="img-responsive img-rounded" [src]='avance1Url[i]'/>
+          <div class="col-xs-12" style="width:150px;height:150px">
+            <img style="cursor:pointer" class="img-responsive img-rounded" [src]="diag.urlAvance1"/>
           </div>
-          <div class="col-xs-12" style="width:150px;height:150px" *ngIf="avance2Url[i]">
-            <img style="cursor:pointer" class="img-responsive img-rounded"  [src]='avance2Url[i]'/>
+          <div class="col-xs-12" style="width:150px;height:150px">
+            <img style="cursor:pointer" class="img-responsive img-rounded"  [src]='diag.urlAvance2'/>
           </div>
-          <div class="col-xs-12" style="width:150px;height:150px" *ngIf="cartaUrl[i]">
-            <img style="cursor:pointer" class="img-responsive img-rounded"  [src]='cartaUrl[i]'/>
+          <div class="col-xs-12" style="width:150px;height:150px">
+            <img style="cursor:pointer" class="img-responsive img-rounded"  [src]='diag.urlCarta'/>
           </div>
         </div>
     </accordion-group>

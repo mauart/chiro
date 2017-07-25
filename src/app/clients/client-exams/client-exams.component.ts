@@ -155,7 +155,7 @@ export class ClientExamsComponent implements OnInit {
 
     if(this.fileCarta){
       this.clientsService.uploadImage(this.fileCarta).then(snapshot=>{
-        let url3=snapshot.downloadURL;
+        url3=snapshot.downloadURL;
       })
       .catch(error=>{
         console.log(error);
@@ -173,24 +173,35 @@ export class ClientExamsComponent implements OnInit {
       }
 
     }
-    let diagnostico={
-      presuntivo:form.value.presuntivo,
-      definitivo:form.value.definitivo,
-      plan_estudio:form.value.plan_de_estudio,
-      urlAvance1:this.avance1Name,
-      urlAvance2:this.avance2Name,
-      urlCarta:this.cartaName,
-      urlEstudios:this.estudiosName
-    }
-    console.log(diagnostico);
-    this.client.addDiagnostico(diagnostico);
-    let key=this.clientsService.getClientKey(this.id);
-    this.clientsService.updateClientDB(key,this.client)
-    .subscribe(result=>{
-      console.log(result);
-    },error=>{
-      console.log(error);
+    let promise:Promise<any>=new Promise((res,rej)=>{
+
+      setTimeout(()=>{
+        let diagnostico={
+          presuntivo:form.value.presuntivo,
+          definitivo:form.value.definitivo,
+          plan_estudio:form.value.plan_de_estudio,
+          urlAvance1:url1,
+          urlAvance2:url2,
+          urlCarta:url3,
+          urlEstudios:urls
+        }
+        res(diagnostico);
+      },10000)
+
+    });
+
+    promise.then((diagnostico)=>{
+      console.log("Real Diagnos",diagnostico);
+      this.client.addDiagnostico(diagnostico);
+      let key=this.clientsService.getClientKey(this.id);
+      this.clientsService.updateClientDB(key,this.client)
+      .subscribe(result=>{
+        console.log(result);
+      },error=>{
+        console.log(error);
+      })
     })
+
 
   }
 }
