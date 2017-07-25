@@ -18,6 +18,7 @@ export class ClientDetailComponent implements OnInit,OnDestroy {
   constructor(public dialog: MdDialog,private clientsService:ClientsService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {
+    this.clientsService.setEditable(true);
     this.route.params.subscribe((params:Params)=>{
         this.id=+params['id'];
         this.client=this.clientsService.getClient(this.id);
@@ -40,6 +41,9 @@ export class ClientDetailComponent implements OnInit,OnDestroy {
   }
   ngOnDestroy(){
     this.clientsService.setEditable(false);
+  }
+  isDiagnosticosAvailable(){
+    return this.client.getDiagnosticos().length>0
   }
 
 }

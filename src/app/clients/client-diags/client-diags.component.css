@@ -5,3 +5,10 @@ background-color: rgb(66, 139, 202);
 border-color: rgb(53, 126, 189);
 }
 .glyphicon { margin-right:5px; }
+img {
+    height: auto;
+    width: auto;
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: contain;
+}

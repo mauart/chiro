@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute,Params} from '@angular/router';
 import {ClientsService} from '../clients.service';
 import {AccordionModule} from "ng2-accordion";
@@ -8,7 +8,7 @@ import {AccordionModule} from "ng2-accordion";
   templateUrl: './client-diags.component.html',
   styleUrls: ['./client-diags.component.css']
 })
-export class ClientDiagsComponent implements OnInit {
+export class ClientDiagsComponent implements OnInit,OnDestroy {
   index:number;
   diagnosticos:any[];
 
@@ -18,7 +18,11 @@ export class ClientDiagsComponent implements OnInit {
       });
 
   }
+  ngOnDestroy(){
+    this.clientsService.setEditable(false);
+  }
   ngOnInit() {
     this.diagnosticos=this.clientsService.getDiagnosticos(this.index);
+    this.clientsService.setEditable(true);
   }
 }

@@ -17,6 +17,6 @@
   </ul>
   <div class="card-block">
     <button md-raised-button color="primary" (click)="openDialogExamen()">Realizar examen</button>
-    <button md-raised-button color="primary" (click)="onSearchForDiags()">Diagnosticos</button>
+    <button md-raised-button color="primary" (click)="onSearchForDiags()" [disabled]="!isDiagnosticosAvailable()">Diagnosticos</button>
   </div>
 </div>

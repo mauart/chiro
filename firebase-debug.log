@@ -1,0 +1,28 @@
+[debug] [2017-07-25T17:32:23.851Z] ----------------------------------------------------------------------
+[debug] [2017-07-25T17:32:23.854Z] Command:      C:\Program Files\nodejs\node.exe C:\Users\MAURICIODAVIDARTEAGA\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-07-25T17:32:23.854Z] CLI Version:  3.9.1
+[debug] [2017-07-25T17:32:23.854Z] Platform:     win32
+[debug] [2017-07-25T17:32:23.854Z] Node Version: v6.10.2
+[debug] [2017-07-25T17:32:23.857Z] Time:         Tue Jul 25 2017 12:32:23 GMT-0500 (Central Daylight Time (Mexico))
+[debug] [2017-07-25T17:32:23.857Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-07-25T17:32:23.875Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-07-25T17:32:23.876Z] > authorizing via signed-in user
+[debug] [2017-07-25T17:32:23.880Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/chiropodist-aea5b  
+ Tue Jul 25 2017 12:32:23 GMT-0500 (Central Daylight Time (Mexico))
+[debug] [2017-07-25T17:32:24.805Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-25T17:32:24.807Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/chiropodist-aea5b/tokens  
+ Tue Jul 25 2017 12:32:24 GMT-0500 (Central Daylight Time (Mexico))
+[debug] [2017-07-25T17:32:25.353Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\MAURICIODAVIDARTEAGA\Desktop\chiro'...
+[info] 
+[debug] [2017-07-25T17:32:25.358Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/chiropodist-aea5b  
+ Tue Jul 25 2017 12:32:25 GMT-0500 (Central Daylight Time (Mexico))
+[debug] [2017-07-25T17:32:25.971Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-25T17:32:25.972Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/697022958275/clients/_:getWebAppConfig  
+ Tue Jul 25 2017 12:32:25 GMT-0500 (Central Daylight Time (Mexico))
+[debug] [2017-07-25T17:32:26.595Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+

@@ -145,7 +145,7 @@ export class ClientsService implements OnInit{
           clientFull.setDefPieDer(client.def_pie_der);
           clientFull.setDefPieIzq(client.def_pie_izq);
 
-          clientFull.addDiagnosticoArray(client.diagnosticos);
+          clientFull.addDiagnosticoArray(client.diagnosticos || []);
 
 
           let shortClient=clientFull.getClientShortModel();

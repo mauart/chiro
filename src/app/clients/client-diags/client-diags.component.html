@@ -30,15 +30,33 @@
         </div>
         <div class="row">
           <hr />
-          <div class="col-xs-12" style="width:150px;height:150px">
-            <img style="cursor:pointer" class="img-responsive img-rounded" [src]="diag.urlAvance1"/>
+          <div class="col-xs-12<">
+            <h4>Avance #1</h4>
+            <a class=thumbnail style="cursor:pointer">
+                <img class="img-responsive img-rounded" [src]="diag.urlAvance1"/>
+            </a>
           </div>
-          <div class="col-xs-12" style="width:150px;height:150px">
-            <img style="cursor:pointer" class="img-responsive img-rounded"  [src]='diag.urlAvance2'/>
+          <div class="col-xs-12">
+            <h4>Avance #2</h4>
+            <a style="cursor:pointer" class="thumbnail">
+              <img class="img-responsive img-rounded"  [src]='diag.urlAvance2'/>
+            </a>
+
           </div>
-          <div class="col-xs-12" style="width:150px;height:150px">
-            <img style="cursor:pointer" class="img-responsive img-rounded"  [src]='diag.urlCarta'/>
+          <div class="col-xs-12">
+            <h4>Carta</h4>
+            <a style="cursor:pointer" class="thumbnail">
+              <img class="img-responsive img-rounded"  [src]='diag.urlCarta'/>
+            </a>
           </div>
+
+          <div class="col-xs-12">
+            <h4>Estudios</h4>
+            <a style="cursor:pointer" class="thumbnail" *ngFor="let estudio of diag.urlEstudios">
+              <img class="img-responsive img-rounded"  [src]='estudio'/>
+            </a>
+          </div>
+
         </div>
     </accordion-group>
 

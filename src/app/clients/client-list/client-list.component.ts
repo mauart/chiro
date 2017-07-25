@@ -40,7 +40,9 @@ export class ClientListComponent implements OnInit,OnDestroy {
     this.clientsService.deleteClient(this.key).subscribe(result=>{
       this.clientsService.deleteClientFromArray(this.index);
       console.log(result);
-    })
+    });
+    this.clientsService.setEditable(false);
+    this.router.navigate(['/clients']);
   }
   onSelected(info:{index,key})
   {
