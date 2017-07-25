@@ -334,7 +334,8 @@ export class ClientAddComponent implements OnInit {
 
 
     this.clientService.addClient(client).subscribe(data=>{
-      console.log(data);
+      console.log(data.json());
+      this.clientService.updateClientKey(data.json().name)
     },error=>{
       console.log("error",error);
     })

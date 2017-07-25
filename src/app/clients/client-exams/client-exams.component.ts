@@ -3,6 +3,8 @@ import {ClientsService} from '../clients.service';
 import {NgForm} from '@angular/forms';
 import {MD_DIALOG_DATA} from '@angular/material';
 import {ClientFullModel} from '../client-full.model';
+import {MdDialog, MdDialogRef} from '@angular/material';
+
 @Component({
   selector: 'app-client-exams',
   templateUrl: './client-exams.component.html',
@@ -29,7 +31,7 @@ export class ClientExamsComponent implements OnInit {
 
   client:ClientFullModel;
 
-  constructor(private clientsService:ClientsService,@Inject(MD_DIALOG_DATA) public data: any) {
+  constructor(private clientsService:ClientsService,@Inject(MD_DIALOG_DATA) public data: any,public dialogRef: MdDialogRef<ClientExamsComponent>) {
     this.id=data;
     this.client=clientsService.getClient(this.id);
     console.log(this.id);
@@ -55,7 +57,6 @@ export class ClientExamsComponent implements OnInit {
           alert('invalid format');
           return;
       }
-
       reader.onload = this._handleReaderLoadedPush.bind(this);
       reader.readAsDataURL(file);
       this.estudiosName+=file.name+' ';
@@ -66,7 +67,6 @@ export class ClientExamsComponent implements OnInit {
     var reader = e.target;
     this.estudios.push(reader.result);
 }
-
   onImageAvance1(e) {
         this.fileAvance1 = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
 
@@ -128,80 +128,92 @@ export class ClientExamsComponent implements OnInit {
   }
   onSubmit(form:NgForm){
 
-    let url1='';
-    let url2="";
-    let url3="";
-    let urls=[];
+    let promiseFile1:Promise<{file,url}>=new Promise<{file,url}>((resolve,reject)=>{
+      if(this.fileAvance1){
+        this.clientsService.uploadImage(this.fileAvance1).then(snapshot=>{
+          let url1=snapshot.downloadURL;
+          resolve({file:'file1',url:url1});
+        })
+        .catch(error=>{
+          console.log(error);
+          reject(error);
+        });
+      }
+    });
 
+    let promiseFile2:Promise<{file,url}>=new Promise<{file,url}>((resolve,reject)=>{
+      if(this.fileAvance2){
+        this.clientsService.uploadImage(this.fileAvance2).then(snapshot=>{
+          let url2=snapshot.downloadURL;
+          resolve({file:'file2',url:url2});
+        })
+        .catch(error=>{
+          console.log(error);
+          reject(error);
+        });
+      }
+    });
 
-    if(this.fileAvance1){
-      this.clientsService.uploadImage(this.fileAvance1).then(snapshot=>{
-        url1=snapshot.downloadURL;
-      })
-      .catch(error=>{
-        console.log(error);
-      });
-    }
-
-    if(this.fileAvance2){
-      this.clientsService.uploadImage(this.fileAvance2).then(snapshot=>{
-         url2=snapshot.downloadURL;
-
-      })
-      .catch(error=>{
-        console.log(error);
-      });
-    }
-
-    if(this.fileCarta){
-      this.clientsService.uploadImage(this.fileCarta).then(snapshot=>{
-        url3=snapshot.downloadURL;
-      })
-      .catch(error=>{
-        console.log(error);
-      });
-    }
-    if(this.fileEstudios.length>0){
-      for(let file of this.fileEstudios ){
-        this.clientsService.uploadImage(file).then(snapshot=>{
-          urls.push(snapshot.downloadURL);
-
+    let promiseFile3:Promise<{file,url}>=new Promise<{file,url}>((resolve,reject)=>{
+      if(this.fileCarta){
+        this.clientsService.uploadImage(this.fileCarta).then(snapshot=>{
+          let url3=snapshot.downloadURL;
+          resolve({file:'file3',url:url3});
         })
         .catch(error=>{
           console.log(error);
         });
       }
-
-    }
-    let promise:Promise<any>=new Promise((res,rej)=>{
-
-      setTimeout(()=>{
-        let diagnostico={
-          presuntivo:form.value.presuntivo,
-          definitivo:form.value.definitivo,
-          plan_estudio:form.value.plan_de_estudio,
-          urlAvance1:url1,
-          urlAvance2:url2,
-          urlCarta:url3,
-          urlEstudios:urls
+    })
+    let promiseFiles1:Promise<{file,url}>=new Promise<{file,url}>((resolve,reject)=>{
+      let urls=[];
+      if(this.fileEstudios.length>0){
+        for(let file of this.fileEstudios ){
+          this.clientsService.uploadImage(file).then(snapshot=>{
+            urls.push(snapshot.downloadURL);
+          })
+          .catch(error=>{
+            console.log(error);
+          });
         }
-        res(diagnostico);
-      },10000)
-
+        resolve({file:'file4',url:urls});
+      }
     });
 
-    promise.then((diagnostico)=>{
-      console.log("Real Diagnos",diagnostico);
+    Promise.all([promiseFile1,promiseFile2,promiseFile3,promiseFiles1])
+    .then((success)=>{
+      console.log(success);
+      let diagnostico={
+                         presuntivo:form.value.presuntivo,
+                         definitivo:form.value.definitivo,
+                         plan_estudio:form.value.plan_de_estudio,
+                         urlAvance1:'',
+                         urlAvance2:'',
+                         urlCarta:'',
+                         urlEstudios:[]
+                       }
+      success.map((objToFile)=>{
+        if(objToFile.file==='file1')
+          diagnostico.urlAvance1=objToFile.url;
+        else if(objToFile.file==='file2')
+          diagnostico.urlAvance2=objToFile.url;
+        else if(objToFile.file==='file3')
+          diagnostico.urlCarta=objToFile.url;
+        else if(objToFile.file==='file4')
+          diagnostico.urlEstudios=objToFile.url;
+      });
+
       this.client.addDiagnostico(diagnostico);
+
       let key=this.clientsService.getClientKey(this.id);
+
       this.clientsService.updateClientDB(key,this.client)
       .subscribe(result=>{
         console.log(result);
+        setTimeout(()=>{  this.dialogRef.close();},1000);
       },error=>{
         console.log(error);
       })
-    })
-
-
+    });
   }
 }

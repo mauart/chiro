@@ -56,7 +56,12 @@ export class ClientsService implements OnInit{
     addClient(client:ClientFullModel){
       return this.http.post('https://chiropodist-aea5b.firebaseio.com/chirodb.json',client);
     }
-
+    updateClientKey(key:string){
+      let client:ClientShortModel=this.clients[this.clients.length-1];
+      client.setKey(key);
+      this.clients[this.clients.length-1]=client;
+      this.clientsShortChange.next(this.clients.slice());
+    }
     addClientToArray(clientFull:ClientFullModel){
         this.clients.push(clientFull.getClientShortModel());
         this.clientsFull.push(clientFull);
