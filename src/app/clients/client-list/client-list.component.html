@@ -6,7 +6,11 @@
     <md-icon >add_circle</md-icon>
     <span>New Client</span>
   </button>
-  <button md-menu-item [disabled]="!clientsService.isEditable()">
+  <button
+            md-menu-item
+            [disabled]="!clientsService.isEditable()"
+            (click)="onEditClient()"
+            >
     <md-icon>mode_edit</md-icon>
     <span>Edit Client</span>
   </button>

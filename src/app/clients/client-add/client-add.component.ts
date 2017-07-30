@@ -349,19 +349,21 @@ export class ClientAddComponent implements OnInit {
   constructor(private router:Router,private clientService:ClientsService,public dialog: MdDialog) { }
 
   openDialogDer() {
-   let dialogRef = this.dialog.open(FootDef);
+   let dialogRef = this.dialog.open(FootDef,{data:this.resultDialog1 || {} });
 
    dialogRef.afterClosed().subscribe(result => {
-     this.resultDialog1 = result;
+     if(result)
+      this.resultDialog1 = result;
      console.log("form value:", this.resultDialog1);
    });
  }
 
  openDialogIzq() {
-  let dialogRef = this.dialog.open(FootDef);
+  let dialogRef = this.dialog.open(FootDef,{data:this.resultDialog2 || {} });
 
   dialogRef.afterClosed().subscribe(result => {
-    this.resultDialog2 = result;
+    if(result)
+      this.resultDialog2 = result;
     console.log("form value:", this.resultDialog2);
   });
 }

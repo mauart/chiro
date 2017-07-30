@@ -10,6 +10,7 @@ import {ClientDetailComponent} from './clients/client-detail/client-detail.compo
 import {ClientAddComponent} from './clients/client-add/client-add.component';
 import {ClientsComponent} from './clients/clients.component';
 import {ClientDiagsComponent} from './clients/client-diags/client-diags.component';
+import {ClientEditComponent} from './clients/client-edit/client-edit.component';
 
 import {AuthGuard} from './services/auth.guard';
 
@@ -17,10 +18,10 @@ import {AuthGuard} from './services/auth.guard';
 const appRoutes:Routes=[
                   {path:'', redirectTo:'/clients',pathMatch:'full',canActivate:[AuthGuard]},
                   {path:'clients/new',component:ClientAddComponent,canActivate:[AuthGuard]},
+                  {path:'clients/edit/:id',component:ClientEditComponent,canActivate:[AuthGuard]},
                   {path:'clients',component:ClientsComponent,canActivate:[AuthGuard],children:[
                   {path:':id',component:ClientDetailComponent},
-                  {path:':id/diags',component:ClientDiagsComponent},
-
+                  {path:':id/diags',component:ClientDiagsComponent}
                   ]},
                   {path:'users',component:UserListComponent,canActivate:[AuthGuard]},
                   {path:'signin',component:SigninComponent},

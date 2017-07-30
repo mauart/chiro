@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {AccordionModule} from "ng2-accordion";
 
@@ -36,6 +36,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import {AuthService} from './services/auth';
 import { ClientDiagsComponent } from './clients/client-diags/client-diags.component';
 import { ClientExamsComponent } from './clients/client-exams/client-exams.component';
+import { ClientEditComponent } from './clients/client-edit/client-edit.component';
 
 @NgModule({
   declarations: [
@@ -52,12 +53,14 @@ import { ClientExamsComponent } from './clients/client-exams/client-exams.compon
     Confirm,
     SignupComponent,
     ClientDiagsComponent,
-    ClientExamsComponent
+    ClientExamsComponent,
+    ClientEditComponent
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AccordionModule,
     AppRoutingModule,

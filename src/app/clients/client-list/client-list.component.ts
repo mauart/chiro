@@ -44,6 +44,9 @@ export class ClientListComponent implements OnInit,OnDestroy {
     this.clientsService.setEditable(false);
     this.router.navigate(['/clients']);
   }
+  onEditClient(){
+    this.router.navigate(['/clients/edit/'+this.index]);
+  }
   onSelected(info:{index,key})
   {
       this.index=info.index;
