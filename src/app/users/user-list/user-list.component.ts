@@ -10,7 +10,7 @@ export class UserListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("hola")
+    console.log("hi users");
   }
 
 }

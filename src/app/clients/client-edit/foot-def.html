@@ -1,0 +1,112 @@
+<div style="width: 500px;
+                  height: 100%;">
+  <h1 md-dialog-title>Definir pie</h1>
+  <div md-dialog-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="footForm">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="col-xs-3">
+            <label for="antepieder">Antepie</label>
+          </div>
+          <div class="col-xs-9 ">
+            <section  class="col-xs-4" *ngFor="let antepie of antepies">
+              <md-checkbox
+                            class="example-margin"
+                            [id]="antepie.ref"
+                            formControlName="{{antepie.ref}}" >
+                            {{antepie.name}}
+              </md-checkbox>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <br />
+          <div class="col-xs-3">
+            <label for="mediopieDer">Mediopie</label>
+          </div>
+          <div class="col-xs-9">
+            <section
+                      id="mediopieDer"
+                      class="col-xs-4"
+                      *ngFor="let mediopie of mediopies">
+              <md-checkbox
+                            class="example-margin"
+                            [id]="mediopie.ref"
+                            formControlName="{{mediopie.ref}}" >
+                            {{mediopie.name}}
+              </md-checkbox>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <br />
+          <div class="col-xs-3">
+            <label for="retropie">Retropie</label>
+          </div>
+          <div class="col-xs-9">
+            <section
+                        id="retropie"
+                        class="col-xs-4"
+                        *ngFor="let retropie of retropies">
+              <md-checkbox
+                            class="example-margin"
+                            [id]="retropie.ref"
+                            formControlName="{{retropie.ref}}" >
+                            {{retropie.name}}
+              </md-checkbox>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <br />
+          <div class="col-xs-3">
+            <label for="tipopie">Tipo pie</label>
+          </div>
+          <div class="col-xs-9">
+            <md-select
+                        class="col-xs-12"
+                        style="margin-bottom=30px"
+                        placeholder="Tipo de pie"
+                        formControlName="tipo_pieder"
+                        [id]="tipo_pieder">
+              <md-option
+                          *ngFor="let tipo of tipopies"
+                          [value]="tipo.ref">
+                {{ tipo.name }}
+              </md-option>
+            </md-select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <br />
+          <hr />
+          <div class="col-xs-3"></div>
+          <div class="col-xs-9">
+            <button
+                    type="submit"
+                    md-button
+                    color="primary">
+                    Continuar
+            </button>
+            <button
+                    type="button"
+                    md-button
+                    md-dialog-close
+                    color="primary">
+                    Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

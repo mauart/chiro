@@ -20,7 +20,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./client-add.component.css']
 })
 export class ClientAddComponent implements OnInit {
-  favoriteSeason: string;
 
   hombroniv:boolean;
   caderaniv:boolean;
@@ -354,7 +353,6 @@ export class ClientAddComponent implements OnInit {
    dialogRef.afterClosed().subscribe(result => {
      if(result)
       this.resultDialog1 = result;
-     console.log("form value:", this.resultDialog1);
    });
  }
 
@@ -364,14 +362,8 @@ export class ClientAddComponent implements OnInit {
   dialogRef.afterClosed().subscribe(result => {
     if(result)
       this.resultDialog2 = result;
-    console.log("form value:", this.resultDialog2);
   });
 }
-
-
-
-
-
   ngOnInit() {
   }
 

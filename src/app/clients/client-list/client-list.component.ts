@@ -19,7 +19,7 @@ export class ClientListComponent implements OnInit,OnDestroy {
   clientsSubscriptor:Subscription;
 
   constructor(private router:Router,private route:ActivatedRoute,private clientsService:ClientsService){
-
+    this.clientsService.onGet();
   }
 
   ngOnInit() {

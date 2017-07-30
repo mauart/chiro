@@ -8,17 +8,19 @@ import {Subject} from 'rxjs/Subject';
 import * as firebase from 'firebase';
 
 import {Headers,Http,Response} from '@angular/http';
+import {AuthService} from '../services/auth';
+
 import 'rxjs';
+
 @Injectable()
 export class ClientsService implements OnInit{
 
-  //clientsFullChange=new Subject<ClientFullModel[]>()
+  clientsFullChange=new Subject<ClientFullModel[]>()
   clientsShortChange=new Subject<ClientShortModel[]>();
   ngOnInit(){
 
   }
-  constructor(private http:Http){
-    this.onGet();
+    constructor(private http:Http,private authService:AuthService){
   }
 
   clients:ClientShortModel[]=[];
@@ -30,17 +32,22 @@ export class ClientsService implements OnInit{
     {
       return this.editable;
     }
+
     setEditable(editable:boolean){
       this.editable=editable;
     }
+
     updateClient(index:number,client:ClientFullModel){
       this.clientsFull[index]=client;
       this.clients[index]=this.clientsFull[index].getClientShortModel();
     }
+
     updateClientDB(key:string,client:ClientFullModel){
-      console.log('https://chiropodist-aea5b.firebaseio.com/chirodb/'+key+'.json');
+      const token=this.authService.getToken();
+
+      console.log('https://chiropodist-aea5b.firebaseio.com/chirodb/'+key+'.json?auth='+token);
       console.log(client);
-      return this.http.put('https://chiropodist-aea5b.firebaseio.com/chirodb/'+key+'.json',client);
+      return this.http.put('https://chiropodist-aea5b.firebaseio.com/chirodb/'+key+'.json?auth='+token,client);
     }
     getClients(){
       console.log("clients:",this.clients)
@@ -54,7 +61,9 @@ export class ClientsService implements OnInit{
     }
 
     addClient(client:ClientFullModel){
-      return this.http.post('https://chiropodist-aea5b.firebaseio.com/chirodb.json',client);
+      const token=this.authService.getToken();
+
+      return this.http.post('https://chiropodist-aea5b.firebaseio.com/chirodb.json?auth='+token,client);
     }
     updateClientKey(key:string){
       let client:ClientShortModel=this.clients[this.clients.length-1];
@@ -62,19 +71,21 @@ export class ClientsService implements OnInit{
       this.clients[this.clients.length-1]=client;
       this.clientsShortChange.next(this.clients.slice());
     }
+
     addClientToArray(clientFull:ClientFullModel){
         this.clients.push(clientFull.getClientShortModel());
         this.clientsFull.push(clientFull);
-
         //this.clientsFullChange.next(this.clientsFull.slice());
         this.clientsShortChange.next(this.clients.slice());
     }
 
 
     deleteClient(key:string){
-      console.log('https://chiropodist-aea5b.firebaseio.com/chirodb/'+key+'.json');
+      const token=this.authService.getToken();
 
-      return this.http.delete('https://chiropodist-aea5b.firebaseio.com/chirodb/'+key+'.json');
+      console.log('https://chiropodist-aea5b.firebaseio.com/chirodb/'+key+'.json?auth='+token);
+
+      return this.http.delete('https://chiropodist-aea5b.firebaseio.com/chirodb/'+key+'.json?auth='+token);
     }
 
     deleteClientFromArray(index:number)
@@ -90,7 +101,9 @@ export class ClientsService implements OnInit{
       return storageRef.child('/images/'+imageName).getDownloadURL();
     }
     getClientsFull(){
-      return this.http.get('https://chiropodist-aea5b.firebaseio.com/chirodb.json')
+      const token=this.authService.getToken();
+
+      return this.http.get('https://chiropodist-aea5b.firebaseio.com/chirodb.json?auth='+token)
       .map((response:Response)=>{
         const data=response.json();
         return data;
@@ -100,6 +113,9 @@ export class ClientsService implements OnInit{
       return this.clientsFull[index].getDiagnosticos().slice();
     }
     onGet(){
+      this.clients=[];
+      this.clientsFull=[];
+      
       this.getClientsFull()
       .subscribe((clients:any)=>{
         const data=clients;
@@ -151,8 +167,13 @@ export class ClientsService implements OnInit{
           let shortClient=clientFull.getClientShortModel();
           shortClient.setKey(key);
           console.log("shortVersion: ",shortClient);
+
           this.clients.push(shortClient);
           this.clientsFull.push(clientFull);
+
+          this.clientsShortChange.next(this.clients);
+          this.clientsFullChange.next(this.clientsFull);
+
         }
       },error=>{
         console.log("error during get",error);
