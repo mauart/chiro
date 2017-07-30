@@ -39,7 +39,10 @@
                         name="estate"
                         ngModel
                         required>
-           <md-radio-button class="example-radio-button" *ngFor="let state of states" [value]="state">
+           <md-radio-button
+                            class="example-radio-button"
+                            *ngFor="let state of states"
+                            [value]="state">
              {{state}}
            </md-radio-button>
         </md-radio-group>
@@ -258,7 +261,13 @@
             </div>
             <div class="col-xs-6">
               <section class="col-xs-12" *ngFor="let vascular of vasculares">
-                <md-checkbox [disabled]="!expVasc.checked" class="example-margin" ngModel [name]="vascular.ref | lowercase">{{vascular.name}}</md-checkbox>
+                <md-checkbox
+                              [disabled]="!expVasc.checked"
+                              class="example-margin"
+                              ngModel
+                              [name]="vascular.ref | lowercase">
+                              {{vascular.name}}
+                </md-checkbox>
               </section>
             </div>
         </div>
@@ -387,7 +396,12 @@
           </md-radio-button>
         </md-radio-group>
         <section class="col-xs-12" *ngFor="let habito2 of habitos2">
-          <md-checkbox class="example-margin" ngModel [name]="habito2.ref | lowercase" >{{habito2.name}}</md-checkbox>
+          <md-checkbox
+                        class="example-margin"
+                        ngModel
+                        [name]="habito2.ref | lowercase" >
+                        {{habito2.name}}
+          </md-checkbox>
         </section>
         </div>
       </div>
@@ -398,7 +412,14 @@
         </div>
         <div class="col-xs-7">
           <md-input-container class="col-xs-9">
-            <textarea [disabled]="!antNoPat.checked" mdInput placeholder="Otros antecedentes no patalogicos" rows="4" name="no_pat_otros" ngModel></textarea>
+            <textarea
+                      [disabled]="!antNoPat.checked"
+                      mdInput
+                      placeholder="Otros antecedentes no patalogicos"
+                      rows="4"
+                      name="no_pat_otros"
+                      ngModel>
+            </textarea>
           </md-input-container>
         </div>
       </div>
@@ -443,7 +464,12 @@
         </div>
         <div class="col-xs-5">
           <section  class="col-xs-6" *ngFor="let enf of enf_infant">
-            <md-checkbox class="example-margin" ngModel [name]="enf.ref | lowercase" >{{enf.name}}</md-checkbox>
+            <md-checkbox
+                          class="example-margin"
+                          ngModel
+                          [name]="enf.ref | lowercase" >
+                          {{enf.name}}
+            </md-checkbox>
           </section>
         </div>
       </div>
@@ -454,7 +480,14 @@
         </div>
         <div class="col-xs-7">
           <md-input-container class="col-xs-9">
-            <textarea [disabled]="!antPatoEsp.checked" mdInput placeholder="Especificar antecedente patologico" rows="4" name="ant_pato" ngModel></textarea>
+            <textarea
+                        [disabled]="!antPatoEsp.checked"
+                        mdInput
+                        placeholder="Especificar antecedente patologico"
+                        rows="4"
+                        name="ant_pato"
+                        ngModel>
+            </textarea>
           </md-input-container>
         </div>
       </div>
@@ -465,7 +498,13 @@
         </div>
         <div class="col-xs-7">
           <md-input-container class="col-xs-9">
-            <textarea [disabled]="!antPatoMot.checked" mdInput placeholder="Especificar motivo de la consulta" rows="4" name="motivo_consulta" ngModel></textarea>
+            <textarea
+                      [disabled]="!antPatoMot.checked"
+                      mdInput placeholder="Especificar motivo de la consulta"
+                      rows="4"
+                      name="motivo_consulta"
+                      ngModel>
+            </textarea>
           </md-input-container>
         </div>
       </div>
@@ -493,7 +532,12 @@
             </p>
           </div>
           <div class="col-xs-4">
-            <md-select class="col-xs-12" style="margin-bottom=30px" placeholder="Percepcion Dolorosa" name="pd_dolorosa" ngModel>
+            <md-select
+                        class="col-xs-12"
+                        style="margin-bottom=30px"
+                        placeholder="Percepcion Dolorosa"
+                        name="pd_dolorosa"
+                        ngModel>
               <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
                 {{ percepcion.name }}
               </md-option>
@@ -501,7 +545,11 @@
             <div class="col-xs-3">
               <br/>
             </div>
-            <md-select class="col-xs-12" placeholder="Percepcion tactil" name="pd_tactil" ngModel>
+            <md-select
+                        class="col-xs-12"
+                        placeholder="Percepcion tactil"
+                        name="pd_tactil"
+                        ngModel>
               <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
                 {{ percepcion.name }}
               </md-option>
@@ -509,7 +557,11 @@
             <div class="col-xs-3">
               <br/>
             </div>
-            <md-select class="col-xs-12" placeholder="Percepcion termica" name="pd_termica" ngModel>
+            <md-select
+                        class="col-xs-12"
+                        placeholder="Percepcion termica"
+                        name="pd_termica"
+                        ngModel>
               <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
                 {{ percepcion.name }}
               </md-option>
@@ -517,7 +569,11 @@
             <div class="col-xs-3">
               <br/>
             </div>
-            <md-select class="col-xs-12" placeholder="Percepcion vibratoria" name="pd_vibratoria" ngModel>
+            <md-select
+                        class="col-xs-12"
+                        placeholder="Percepcion vibratoria"
+                        name="pd_vibratoria"
+                        ngModel>
               <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
                 {{ percepcion.name }}
               </md-option>
@@ -526,7 +582,11 @@
             <div class="col-xs-12">
             <hr />
             </div>
-            <md-select class="col-xs-12" placeholder="Reflejo rotuliano" name="rd_rotuliano" ngModel>
+            <md-select
+                        class="col-xs-12"
+                        placeholder="Reflejo rotuliano"
+                        name="rd_rotuliano"
+                        ngModel>
               <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
                 {{ percepcion.name }}
               </md-option>
@@ -535,7 +595,11 @@
             <div class="col-xs-12">
               <br/>
             </div>
-            <md-select class="col-xs-12" placeholder="Reflejo aquiliano" name="rd_aquiliano" ngModel>
+            <md-select
+                        class="col-xs-12"
+                        placeholder="Reflejo aquiliano"
+                        name="rd_aquiliano"
+                        ngModel>
               <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
                 {{ percepcion.name }}
               </md-option>
@@ -553,7 +617,12 @@
           </p>
         </div>
         <div class="col-xs-4">
-          <md-select class="col-xs-12" style="margin-bottom=30px" placeholder="Percepcion Dolorosa" name="pi_dolorosa" ngModel>
+          <md-select
+                      class="col-xs-12"
+                      style="margin-bottom=30px"
+                      placeholder="Percepcion Dolorosa"
+                      name="pi_dolorosa"
+                      ngModel>
             <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
               {{ percepcion.name }}
             </md-option>
@@ -561,7 +630,11 @@
           <div class="col-xs-3">
             <br/>
           </div>
-          <md-select class="col-xs-12" placeholder="Percepcion tactil" name="pi_tactil" ngModel>
+          <md-select
+                      class="col-xs-12"
+                      placeholder="Percepcion tactil"
+                      name="pi_tactil"
+                      ngModel>
             <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
               {{ percepcion.name }}
             </md-option>
@@ -569,7 +642,11 @@
           <div class="col-xs-3">
             <br/>
           </div>
-          <md-select class="col-xs-12" placeholder="Percepcion termica" name="pi_termica" ngModel>
+          <md-select
+                      class="col-xs-12"
+                      placeholder="Percepcion termica"
+                      name="pi_termica"
+                      ngModel>
             <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
               {{ percepcion.name }}
             </md-option>
@@ -577,7 +654,11 @@
           <div class="col-xs-3">
             <br/>
           </div>
-          <md-select class="col-xs-12" placeholder="Percepcion vibratoria" name="pi_vibratoria" ngModel>
+          <md-select
+                      class="col-xs-12"
+                      placeholder="Percepcion vibratoria"
+                      name="pi_vibratoria"
+                      ngModel>
             <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
               {{ percepcion.name }}
             </md-option>
@@ -586,7 +667,11 @@
           <div class="col-xs-12">
           <hr />
           </div>
-          <md-select class="col-xs-12" placeholder="Reflejo rotuliano" name="ri_rotuliano" ngModel>
+          <md-select
+                      class="col-xs-12"
+                      placeholder="Reflejo rotuliano"
+                      name="ri_rotuliano"
+                      ngModel>
             <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
               {{ percepcion.name }}
             </md-option>
@@ -595,7 +680,11 @@
           <div class="col-xs-12">
             <br/>
           </div>
-          <md-select class="col-xs-12" placeholder="Reflejo aquiliano" name="ri_aquiliano" ngModel>
+          <md-select
+                      class="col-xs-12"
+                      placeholder="Reflejo aquiliano"
+                      name="ri_aquiliano"
+                      ngModel>
             <md-option *ngFor="let percepcion of percepciones" [value]="percepcion.ref">
               {{ percepcion.name }}
             </md-option>
@@ -630,12 +719,22 @@
             <div class="col-xs-12">
               <div class="col-xs-12">
                 <section class="example-section">
-                 <md-checkbox class="example-margin" name="hombroniv" [(ngModel)]="hombroniv">Hombro {{hombroniv?'Nivelado':'Desnivelado'}}</md-checkbox>
+                 <md-checkbox
+                              class="example-margin"
+                              name="hombroniv"
+                              [(ngModel)]="hombroniv">
+                              Hombro {{hombroniv?'Nivelado':'Desnivelado'}}
+                 </md-checkbox>
                 </section>
               </div>
               <div class="col-xs-12">
                 <section class="example-section">
-                 <md-checkbox class="example-margin" name="caderaniv" [(ngModel)]="caderaniv">Cadera {{caderaniv?'Nivelada':'Desnivelada'}}</md-checkbox>
+                 <md-checkbox
+                              class="example-margin"
+                              name="caderaniv"
+                              [(ngModel)]="caderaniv">
+                              Cadera {{caderaniv?'Nivelada':'Desnivelada'}}
+                 </md-checkbox>
                 </section>
               </div>
             </div>
@@ -687,7 +786,12 @@
               </div>
             </div>
             <div class="col-xs-12">
-              <md-select class="col-xs-12" style="margin-top:5%" placeholder="Tipo" name="tipoDer" ngModel>
+              <md-select
+                          class="col-xs-12"
+                          style="margin-top:5%"
+                          placeholder="Tipo"
+                          name="tipoDer"
+                          ngModel>
                 <md-option *ngFor="let tipo of tipos" [value]="tipo.ref">
                   {{ tipo.name }}
                 </md-option>
